@@ -7,12 +7,7 @@
         ConnectionString="<%$ ConnectionStrings:AssetManagerConnectionString %>"
         SelectCommand="SELECT * FROM [Assets]"
         DeleteCommand="DELETE FROM Assets where AssetID=@AssetID"
-        UpdateCommand="UPDATE Assets SET ProductName=@ProductName, Total=@Total WHERE AssetID=@AssetID"
-        InsertCommand="INSERT into Assets(ProductName, Total) values (@ProductName, @Total)">
-        <InsertParameters>
-            <asp:ControlParameter ControlID="ProductName" PropertyName="Text" Name="ProductName" />
-            <asp:ControlParameter ControlID="Total" PropertyName="Text" Name="Total" />
-        </InsertParameters>
+        UpdateCommand="UPDATE Assets SET ProductName=@ProductName, Total=@Total WHERE AssetID=@AssetID">
     </asp:SqlDataSource>
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="AssetID" 
@@ -20,15 +15,15 @@
         <Columns>
            <asp:BoundField DataField="ProductName" HeaderText="Product Name"/>
            <asp:BoundField DataField="Total" HeaderText="Total Quantity"/>
-           <asp:BoundField DataField="Allocated" HeaderText="Allocated Quantity"/>
+            <asp:TemplateField HeaderText="Allocated">
+                <ItemTemplate>
+                    <%#Eval("Allocated") %>
+                </ItemTemplate>
+            </asp:TemplateField>
+           
            <asp:CommandField ShowEditButton="true" ShowDeleteButton="true"/>
         </Columns>
     </asp:GridView>
     <br />
-    <div>
-        <asp:Button ID="Button1" runat="server" Text="Insert New" OnClick="Button1_Click"/>
-        <asp:TextBox ID="ProductName" runat="server"></asp:TextBox>
-        <asp:TextBox ID="Total" runat="server"></asp:TextBox>
-    </div>
 </asp:Content>
 

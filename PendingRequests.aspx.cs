@@ -18,20 +18,51 @@ public partial class _Default : System.Web.UI.Page
         Button btn = (Button)sender;
         GridViewRow row = (GridViewRow)btn.NamingContainer;
         row.Cells[3].Text = "ACCEPTED";
-        using (SqlConnection con = new SqlConnection())
+        try
         {
-            con.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=AssetManager;Integrated Security=True;Pooling=False";
-            using (SqlCommand cmd = new SqlCommand())
+            using (SqlConnection con = new SqlConnection())
             {
-                cmd.Connection = con;
-                cmd.CommandText = "UPDATE UserRequests SET Status=@decision WHERE (UserID=@user AND AssetID=@asset)";
-                cmd.Parameters.AddWithValue("@decision", "Accepted");
-                cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
-                cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                con.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=Assets;Integrated Security=True;Pooling=False";
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    int quantity_requested = 0;
 
-                con.Open();
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "SELECT * FROM UserRequests WHERE UserID=@user AND AssetID=@asset";
+                    cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
+                    cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                    con.Open();
+                    Label1.Text = "Hello <br/>";
+                    Label1.Text += row.Cells[0].Text;
+                    Label1.Text += "<br/>" + row.Cells[1].Text + "<br />";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Label1.Text += "<br/>" + reader.HasRows.ToString() + " " + reader.FieldCount.ToString();
+                            int.TryParse(reader["QuantityRequested"].ToString(), out quantity_requested);
+                            Label1.Text = quantity_requested.ToString();
+                        }
+                    }
+
+
+                    cmd.CommandText = "UPDATE UserRequests SET Status=@decision WHERE (UserID=@user AND AssetID=@asset)";
+                    cmd.Parameters.AddWithValue("@decision", "Accepted");
+                    cmd.ExecuteNonQuery();
+
+                    
+                    
+                    cmd.CommandText = "UPDATE Assets SET Allocated = Allocated+@quant WHERE AssetID=@asset";
+                    cmd.Parameters.AddWithValue("@quant", quantity_requested);
+                    cmd.ExecuteNonQuery();
+                    
+                    Response.Redirect("PendingRequests.aspx");
+                }
             }
+        }
+        catch(Exception err)
+        {
+            Label1.Text += err.Message;
         }
     }
 
@@ -40,20 +71,45 @@ public partial class _Default : System.Web.UI.Page
         Button btn = (Button)sender;
         GridViewRow row = (GridViewRow)btn.NamingContainer;
         row.Cells[3].Text = "REJECTED";
-        using (SqlConnection con = new SqlConnection())
+        try
         {
-            con.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=AssetManager;Integrated Security=True;Pooling=False";
-            using (SqlCommand cmd = new SqlCommand())
+            using (SqlConnection con = new SqlConnection())
             {
-                cmd.Connection = con;
-                cmd.CommandText = "UPDATE UserRequests SET Status=@decision WHERE (UserID=@user AND AssetID=@asset)";
-                cmd.Parameters.AddWithValue("@decision", "Rejected");
-                cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
-                cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                con.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=Assets;Integrated Security=True;Pooling=False";
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    int quantity_requested = 0;
 
-                con.Open();
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "SELECT * FROM UserRequests WHERE UserID=@user AND AssetID=@asset";
+                    cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
+                    cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                    con.Open();
+                    Label1.Text = "Hello <br/>";
+                    Label1.Text += row.Cells[0].Text;
+                    Label1.Text += "<br/>" + row.Cells[1].Text + "<br />";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Label1.Text += "<br/>" + reader.HasRows.ToString() + " " + reader.FieldCount.ToString();
+                            int.TryParse(reader["QuantityRequested"].ToString(), out quantity_requested);
+                            Label1.Text = quantity_requested.ToString();
+                        }
+                    }
+
+
+                    cmd.CommandText = "UPDATE UserRequests SET Status=@decision WHERE (UserID=@user AND AssetID=@asset)";
+                    cmd.Parameters.AddWithValue("@decision", "Rejected");
+                    cmd.ExecuteNonQuery();
+                    
+                    Response.Redirect("PendingRequests.aspx");
+                }
             }
+        }
+        catch (Exception err)
+        {
+            Label1.Text += err.Message;
         }
     }
 }
