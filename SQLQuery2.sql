@@ -1,0 +1,2 @@
+﻿SELECT * FROM Assets, UserStatus, Users WHERE Assets.AssetID=UserStatus.AssetID AND UserStatus.UserID=Users.UserID AND ProductName='SanDisk 64GB PD';
+SELECT * FROM UserRequests, Assets, Users WHERE Status='Pending' AND UserRequests.AssetID=Assets.AssetID AND Users.UserID=UserRequests.UserID;
