@@ -17,7 +17,6 @@ public partial class _Default : System.Web.UI.Page
     {
         Button btn = (Button)sender;
         GridViewRow row = (GridViewRow)btn.NamingContainer;
-        row.Cells[3].Text = "ACCEPTED";
         try
         {
             using (SqlConnection con = new SqlConnection())
@@ -30,18 +29,14 @@ public partial class _Default : System.Web.UI.Page
 
                     cmd.CommandText = "SELECT * FROM UserRequests WHERE UserID=@user AND AssetID=@asset";
                     cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
-                    cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                    cmd.Parameters.AddWithValue("@asset", row.Cells[2].Text);
                     con.Open();
-                    Label1.Text = "Hello <br/>";
-                    Label1.Text += row.Cells[0].Text;
-                    Label1.Text += "<br/>" + row.Cells[1].Text + "<br />";
+                    
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            Label1.Text += "<br/>" + reader.HasRows.ToString() + " " + reader.FieldCount.ToString();
                             int.TryParse(reader["QuantityRequested"].ToString(), out quantity_requested);
-                            Label1.Text = quantity_requested.ToString();
                         }
                     }
 
@@ -55,7 +50,12 @@ public partial class _Default : System.Web.UI.Page
                     cmd.CommandText = "UPDATE Assets SET Allocated = Allocated+@quant WHERE AssetID=@asset";
                     cmd.Parameters.AddWithValue("@quant", quantity_requested);
                     cmd.ExecuteNonQuery();
-                    
+
+                    cmd.CommandText = "INSERT INTO UserStatus (UserID, AssetID, CurrentDate, ReturnDate) VALUES (@user, @asset, @curr, @ret)";
+                    cmd.Parameters.AddWithValue("@curr", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@ret", DateTime.Now.AddYears(2));
+                    cmd.ExecuteNonQuery();
+
                     Response.Redirect("PendingRequests.aspx");
                 }
             }
@@ -70,7 +70,6 @@ public partial class _Default : System.Web.UI.Page
     {
         Button btn = (Button)sender;
         GridViewRow row = (GridViewRow)btn.NamingContainer;
-        row.Cells[3].Text = "REJECTED";
         try
         {
             using (SqlConnection con = new SqlConnection())
@@ -83,18 +82,14 @@ public partial class _Default : System.Web.UI.Page
 
                     cmd.CommandText = "SELECT * FROM UserRequests WHERE UserID=@user AND AssetID=@asset";
                     cmd.Parameters.AddWithValue("@user", row.Cells[0].Text);
-                    cmd.Parameters.AddWithValue("@asset", row.Cells[1].Text);
+                    cmd.Parameters.AddWithValue("@asset", row.Cells[2].Text);
                     con.Open();
-                    Label1.Text = "Hello <br/>";
-                    Label1.Text += row.Cells[0].Text;
-                    Label1.Text += "<br/>" + row.Cells[1].Text + "<br />";
+ 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            Label1.Text += "<br/>" + reader.HasRows.ToString() + " " + reader.FieldCount.ToString();
                             int.TryParse(reader["QuantityRequested"].ToString(), out quantity_requested);
-                            Label1.Text = quantity_requested.ToString();
                         }
                     }
 
