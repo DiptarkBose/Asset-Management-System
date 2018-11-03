@@ -6,4 +6,5 @@
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AssetInsert.aspx">Asset Insert</asp:HyperLink>
     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AssetUpdate.aspx">Asset Update</asp:HyperLink>
     <asp:Button ID="Button1" runat="server" Text="You have Pending Requests" OnClick="Button1_Click"/>
+    <asp:Button ID="Button2" runat="server" Text="Generate Report" />
 </asp:Content>

@@ -11,5 +11,11 @@
 
     <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click"/>
     <asp:Label ID="Error" runat="server" Text=""></asp:Label>
+
+    ADMIN:
+    AdminID: <asp:TextBox ID="AdminID" runat="server"></asp:TextBox><br />
+    Admin Password: <asp:TextBox ID="AdminPass" runat="server"></asp:TextBox><br />
+    <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click"/>
+
 </asp:Content>
 

@@ -48,4 +48,9 @@ public partial class _Default : System.Web.UI.Page
             }
         }
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AdminDashboard.aspx");
+    }
 }
