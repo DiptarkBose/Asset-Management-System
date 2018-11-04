@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
     protected void Page_PreInit(object sender, EventArgs e)
     {
         HttpCookie cookie = Request.Cookies["Themes"];
@@ -20,36 +24,25 @@ public partial class _Default : System.Web.UI.Page
             Page.Theme = cookie["Theme"];
         }
     }
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-
     protected void Button1_Click(object sender, EventArgs e)
     {
         using (SqlConnection con = new SqlConnection())
         {
             con.ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=Assets;Integrated Security=True;Pooling=False";
-            using (SqlCommand cmd = new SqlCommand())
+            using (SqlCommand com = new SqlCommand())
             {
-                cmd.Connection = con;
-                cmd.CommandText = "SELECT * FROM Assets WHERE ProductName=@pname";
-                cmd.Parameters.AddWithValue("pname", ProductName.Text);
+                com.Connection = con;
+                com.CommandText = "INSERT INTO Users(Username, Password) VALUES (@u, @p)";
+                com.Parameters.AddWithValue("@u", Username.Text);
+                com.Parameters.AddWithValue("@p", Password.Text);
                 con.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                com.ExecuteNonQuery();
+                com.CommandText = "SELECT * FROM Users WHERE Username=@u";
+                using (SqlDataReader reader = com.ExecuteReader())
                 {
-                    if (reader.HasRows)
+                    if(reader.Read())
                     {
-                        Error.Text = "Item already exists in inventory.";
-                        Error.Visible = true;
-                    }
-                    else
-                    {
-                        SqlDataSource1.Insert();
-                        ProductName.Text = "";
-                        Total.Text = "";
-                        Description.Text = "";
+                        Label1.Text = "Your User ID is: " + reader["UserID"] + ". Please remember this User ID for future use.";
                     }
                 }
             }

@@ -13,7 +13,7 @@
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="AssetID" 
         DataSourceID="SqlDataSource1">
         <Columns>
-           <asp:BoundField DataField="ProductName" HeaderText="Product Name"/>
+           <asp:BoundField DataField="ProductName" HeaderText="Product Name" ReadOnly="true"/>
            <asp:BoundField DataField="Total" HeaderText="Total Quantity"/>
             <asp:TemplateField HeaderText="Allocated">
                 <ItemTemplate>
