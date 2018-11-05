@@ -10,7 +10,7 @@
         ConnectionString="<%$ ConnectionStrings:AssetManagerConnectionString %>"
         SelectCommand="SELECT * FROM [Assets]"
         DeleteCommand="DELETE FROM Assets where AssetID=@AssetID"
-        UpdateCommand="UPDATE Assets SET ProductName=@ProductName, Total=@Total WHERE AssetID=@AssetID">
+        UpdateCommand="UPDATE Assets SET Total=@Total WHERE AssetID=@AssetID">
     </asp:SqlDataSource>
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="AssetID" 
@@ -28,5 +28,7 @@
         </Columns>
     </asp:GridView>
     <br />
+
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AdminDashboard.aspx">Go Back to Home</asp:HyperLink>
 </asp:Content>
 

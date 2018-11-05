@@ -114,5 +114,11 @@
     </asp:Panel>
     <%--<asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>
+    <br />     <br />     <br />     <br />     <br />     <br />     <br />
+    <br />     <br />     <br />     <br />     <br />     <br />     <br />
+    <br />     <br />     <br />     <br />     <br />     <br />     <br />
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AdminDashboard.aspx">Go Back to Home</asp:HyperLink>
 </asp:Content>
+
+
 

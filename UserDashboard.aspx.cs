@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
     {
         StringBuilder sb = new StringBuilder();
         int ctr = 0;
-        sb.Append("Due Dates to return the following products are close:");
+        sb.Append("Alert! Due date for returning products exceeded!");
         sb.Append("\\n");
         using (SqlConnection con = new SqlConnection())
         {

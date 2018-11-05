@@ -42,7 +42,9 @@
     <asp:Panel ID="Panel2" runat="server" CssClass="floatRight" BorderStyle="None" Width="550px">
         <asp:Image ID="Image2" runat="server" ImageUrl="allocated.svg" Height="60px" Width="60px"/>
         &nbsp;&nbsp;
-        <asp:Label ID="Label2" runat="server" Text="Your Allocation Status" Font-Size="40px" Font-Bold="true"></asp:Label><br />
+        <asp:Label ID="Label2" runat="server" Text="Your Allocation Status" Font-Size="40px" Font-Bold="true"></asp:Label>
+        <br />
+        <br />
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                     ConnectionString= "<%$ ConnectionStrings:AssetManagerConnectionString %>" 
                     ProviderName="System.Data.SqlClient" 

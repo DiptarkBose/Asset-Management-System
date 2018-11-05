@@ -60,6 +60,8 @@
          <br />
          <br />
         <asp:Label ID="Error" runat="server" Text="" Visible="false"></asp:Label>
+
+         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AdminDashboard.aspx">Go Back to Home</asp:HyperLink>
     </div>
     
 </asp:Content>

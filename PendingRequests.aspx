@@ -27,5 +27,8 @@
     ConnectionString="<%$ ConnectionStrings:AssetManagerConnectionString %>" 
     SelectCommand="SELECT * FROM [UserRequests], Assets, Users WHERE Status='Pending' AND UserRequests.UserID=Users.UserID AND UserRequests.AssetID=Assets.AssetID"></asp:SqlDataSource>
 <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+
+<br />
+<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AdminDashboard.aspx">Go Back to Home</asp:HyperLink>
 </asp:Content>
 
