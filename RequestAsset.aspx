@@ -23,7 +23,7 @@
     <br />
     <asp:Label ID="Label3" runat="server" Text="Select a Resource " Font-Bold="true"></asp:Label>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:DropDownList ID="DropDownList2" runat="server">
+    <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="false">
     </asp:DropDownList>
     <br />
     <br />
@@ -36,5 +36,7 @@
     
     <br />
     <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+
+    <%--<asp:Label ID="DummyLabel" runat="server" Text="Label"></asp:Label>--%>
     
 </asp:Content>

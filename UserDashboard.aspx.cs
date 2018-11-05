@@ -25,6 +25,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         StringBuilder sb = new StringBuilder();
+        int ctr = 0;
         sb.Append("Due Dates to return the following products are close:");
         sb.Append("\\n");
         using (SqlConnection con = new SqlConnection())
@@ -42,16 +43,20 @@ public partial class _Default : System.Web.UI.Page
                     {
                         DateTime returnDate = (DateTime)reader["ReturnDate"];
                         DateTime currentDate = DateTime.Today;
-                        TimeSpan difference = returnDate - currentDate;
-                        if (difference.TotalDays < 5)
+                        TimeSpan difference = currentDate - returnDate;
+                        if (difference.TotalDays >= 0)
                         {
                             sb.Append(reader["ProductName"]);
                             sb.Append("\\n");
+                            ctr++;
                         }
                     }
                 }
             }
         }
-        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + sb.ToString() + "');", true);
+        if (ctr > 0)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + sb.ToString() + "');", true);
+        }
     }
 }
