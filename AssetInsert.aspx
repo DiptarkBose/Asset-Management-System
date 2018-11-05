@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    <asp:Label ID="Label1" runat="server" Text="Current Inventory" Font-Bold="true" Font-Size="40px"></asp:Label>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:AssetManagerConnectionString %>"
         SelectCommand="SELECT * FROM [Assets]"
@@ -15,6 +16,10 @@
         </InsertParameters>
     </asp:SqlDataSource>
 
+    <br />
+
+    <br />
+
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="AssetID" 
         DataSourceID="SqlDataSource1">
         <Columns>
@@ -23,20 +28,38 @@
            <asp:BoundField DataField="Allocated" HeaderText="Allocated Quantity"/>
         </Columns>
     </asp:GridView>
-    <%--<asp:TextBox ID="TextBox1" runat="server" BackColor="Red"></asp:TextBox>--%>
+    <br />
+    <br />
     <br />
 
      <div>
-        <asp:Button ID="Button1" runat="server" Text="Insert New" OnClick="Button1_Click"/>
+        <asp:Label ID="Label2" runat="server" Text="Enter details for new Asset" Font-Bold="true" Font-Size="25px"></asp:Label>
+         <br />
+         <br />
+        <asp:Label ID="Label3" runat="server" Text="Name" Font-Bold="true"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="ProductName" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please Enter a Product Name" ControlToValidate="ProductName" Display="None" Text="*"></asp:RequiredFieldValidator>
+         <br />
+         <br />
+        <asp:Label ID="Label4" runat="server" Text="Total Quantity" Font-Bold="true"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="Total" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please Enter a Quantity" ControlToValidate="Total"  Display="None" Text="*"></asp:RequiredFieldValidator>
         <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Enter a valid Number" ControlToValidate="Total" MinimumValue="1" MaximumValue="20000" Type="Integer"  Display="None" Text="*"></asp:RangeValidator>
+         <br />
+         <br />
+        <asp:Label ID="Label5" runat="server" Text="Short Description" Font-Bold="true"></asp:Label>
+        &nbsp;&nbsp;
         <asp:TextBox ID="Description" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter a short description" ControlToValidate="Description" Display="None" Text="*"></asp:RequiredFieldValidator>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-         <asp:Label ID="Error" runat="server" Text="" Visible="false"></asp:Label>
+         <br />
+         <br />
+        <asp:Button ID="Button1" runat="server" Text="Insert New" OnClick="Button1_Click"/>
+         <br />
+         <br />
+        <asp:Label ID="Error" runat="server" Text="" Visible="false"></asp:Label>
     </div>
     
 </asp:Content>

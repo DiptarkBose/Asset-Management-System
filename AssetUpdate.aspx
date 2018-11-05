@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <asp:Label ID="Label1" runat="server" Text="Current Inventory" Font-Bold="true" Font-Size="40px"></asp:Label>
+     <br />
+     <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:AssetManagerConnectionString %>"
         SelectCommand="SELECT * FROM [Assets]"

@@ -47,4 +47,9 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Redirect("PendingRequests.aspx");
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Report.aspx");
+    }
 }

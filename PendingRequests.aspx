@@ -3,7 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    Pending Requests:<br/><br />
+    <asp:Label ID="Label2" runat="server" Text="Pending Requests" Font-Bold="true" Font-Size="40px"></asp:Label>
+     <br />
+     <br />
 
 <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" CellPadding="3" CellSpacing="2" BorderColor="#DEBA84" BorderWidth="1px" BackColor="#DEBA84" BorderStyle="None">
     <Columns>

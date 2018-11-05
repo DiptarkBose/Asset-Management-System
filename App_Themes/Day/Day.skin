@@ -26,6 +26,8 @@ Default skin template. The following skins are provided as examples only.
     <SortedDescendingHeaderStyle BackColor="#93451F" />
 </asp:GridView>
 
+<asp:Label runat="server" Font-Italic="true"></asp:Label>
+
 <asp:DetailsView runat="server" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" >
     <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
     <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
