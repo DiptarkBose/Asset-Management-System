@@ -10,7 +10,8 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        HyperLink h = (HyperLink)Master.FindControl("Hyperlink1");
+        h.Visible = false;
     }
     protected void Page_PreInit(object sender, EventArgs e)
     {

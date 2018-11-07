@@ -59,7 +59,7 @@
         <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
         
         <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="Div2"/>
-        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AdminRegistration.aspx">New Admin? Register!</asp:HyperLink>
+        <%--<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AdminRegistration.aspx">New Admin? Register!</asp:HyperLink>--%>
         <br />
         <br /><br />
     </asp:Panel>

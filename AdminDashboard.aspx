@@ -9,6 +9,11 @@
     <style type="text/css">
         .floatRight { float: right; }
     </style>
+    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/AdminRegistration.aspx">Register a New Admin</asp:HyperLink>
+    <br /><br />
+    <asp:Button ID="Button2" runat="server" Text="Generate Report" OnClick="Button2_Click"/>
+    <br />
+    <br />
     <asp:Panel ID="Panel1" runat="server" CssClass="floatLeft" BorderStyle="Outset" Width="550px">
         <asp:Image ID="Image1" runat="server" ImageUrl="inv.png" Height="60px" Width="60px"/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,8 +40,5 @@
         <br />
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Text="Generate Report" OnClick="Button2_Click"/>
-        <br />
-        <br />
     </asp:Panel>
 </asp:Content>
